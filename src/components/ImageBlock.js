@@ -112,7 +112,7 @@ const ImageBlock = ({
           <div style={{ textAlign: "center" }}>
             <Button
               key="cancel"
-              onClick={() => setShowDeleteModal(false)}
+              onClick={() => setShowEditModal(false)}
               style={{ marginRight: "8px" }}
             >
               Cancel
