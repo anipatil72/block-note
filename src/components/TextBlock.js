@@ -26,23 +26,15 @@ const TextBlock = ({
     }
   }, [isEditing]);
 
+  // Updated handleTextChange function
   const handleTextChange = (value) => {
-    // const value = e.target.value;
-    setInputValue(value);
-    updateBlockContent(id, value);
-  };
-
-  const handlePaste = (e) => {
-    const pastedText = e.clipboardData.getData("text");
-    const words = pastedText.trim().split(/\s+/);
-    const clippedText = words.slice(0, 250).join(" ");
-    const newValue =
-      inputValue.slice(0, e.target.selectionStart) +
-      clippedText +
-      inputValue.slice(e.target.selectionEnd);
-    setInputValue(newValue);
-    updateBlockContent(id, newValue);
-    e.preventDefault();
+    const wordCount = countWords(value);
+    if (wordCount <= 250) {
+      setInputValue(value);
+      updateBlockContent(id, value);
+    } else {
+      message.error("You can only add up to 250 words.");
+    }
   };
 
   const countWords = (text) => {
@@ -121,7 +113,7 @@ const TextBlock = ({
           />
         </Tooltip>
       )}
-      <div style={{ flexGrow: 0.9 }}>
+      <div style={{ flex: 0.95 }}>
         <ReactQuill
           theme="snow"
           modules={modules}
