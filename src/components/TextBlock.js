@@ -97,6 +97,7 @@ const TextBlock = ({
         marginBottom: "16px",
         cursor: "move",
         position: "relative",
+        outline: isHovered ? "2px solid #90e0ef" : "none",
       }}
       draggable
       onDragStart={handleDragStart}
